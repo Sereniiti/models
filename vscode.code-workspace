@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "cSpell.words": [
+      "Appbar",
+      "Behaviour",
+      "deepmerge",
+      "Ionicons",
+      "positivebias",
+      "reduxjs",
+      "sereniiti",
+      "snackbars",
+      "stopwords",
+      "tfjs",
+      "tipgroup",
+      "tipsgroups",
+      "ulid",
+      "UNINSTANTIATED",
+      "WEBSOCKETURL"
+    ],
+    "git.ignoreLimitWarning": true
+  }
+}
