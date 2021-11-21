@@ -30,7 +30,7 @@ def distilbert_inference(sentences: List[str]):
   tokenizer = DistilBertTokenizer.from_pretrained(pretrained_model_name_or_path = model_name, config = config)
 
   # Load the model from disk
-  model = tf.keras.models.load_model('saved_model/model')
+  model = tf.keras.models.load_model('../models/distilBERT/prod')
 
   # Tokenize
   embedded_sentences = tokenizer(
