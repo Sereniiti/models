@@ -5,23 +5,25 @@ import boto3
 import datetime
 import random
 import time
-
+import os
+from utilities import files_utils, text_utils
 from botocore.exceptions import ClientError
+from DistilBERT import inference
 
 def lambda_handler(event, context):
-       rating=random.randint(0, 11)
-       text='You are good final test16'
-       body=json.loads(event['body'])
-       text=body['text']
-       text=text.replace(',','').replace('.','').replace('!','')
-       words = text.split()
-       test=(list(map(' '.join, zip(words[:-1], words[1:]))))
-       randomlist = random.sample(range(0, 11), len(test))
-       list_string = map(str, randomlist)
-       explanation=(list(map(', rating : '.join, zip(test[:-1],list_string))))
-       x={'text':text,'steps':'facts','explanation':explanation,'tipgroup':'judgemental','inputime':int(time.time()),'outputime':int(time.time()),'rating':rating}
-       return {
-            'status':200,
-            'body': x
-        }
-    
+    # get the body of the API call
+    body=json.loads(event['body'])
+    # Let's suppose it contains text for inference
+    text=body['text']
+    # Split the text into sentences
+    sentences = text_utils.NLTK_sentence_split(text)
+    # Download BERT if it tge first used?
+    if not os.path.exists("./prod"):
+        inference.download_BERT()
+    # Calculate the inference
+    result = inference.distilbert_inference(sentences)
+    # Return the results to the outside
+    return {
+        'status': 200,
+        'body' : result
+    }

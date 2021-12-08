@@ -1,3 +1,10 @@
 {
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "cSpell.words": [
+    "boto",
+    "botocore",
+    "keras",
+    "NLTK",
+    "sereniiti"
+  ]
 }
